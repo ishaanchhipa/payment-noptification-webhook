@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Notification</title>
+  <style>
+    #notification {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="notification"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io('https://api.render.com/deploy/srv-crh1dilsvqrc7386sfug?key=TYfe9wBY0K4'); // Connect to your server
+
+    // Listen for payment events
+    socket.on('payment', (data) => {
+      const notification = document.getElementById('notification');
+      notification.innerHTML = `Payment Received: ₹${data.amount} from ${data.sender}`;
+      notification.style.display = 'block';
+
+      // Hide after 5 seconds
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
