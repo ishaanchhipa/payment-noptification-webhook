@@ -20,7 +20,7 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    const socket = io('https://api.render.com/deploy/srv-crh1dilsvqrc7386sfug?key=TYfe9wBY0K4'); // Connect to your server
+    const socket = io('https://payment-noptification-webhook.onrender.com'); // Connect to your server
 
     // Listen for payment events
     socket.on('payment', (data) => {
